@@ -119,7 +119,10 @@
 
                             <div class="form-group col-md-4">
                                 {{ Form::label('contact_number',__('messages.contact_number').' <span class="text-danger">*</span>',['class'=>'form-control-label'], false ) }}
-                                {{ Form::text('contact_number',old('contact_number'),['placeholder' => __('messages.contact_number'),'class' =>'form-control contact_number','required']) }}
+                                {{ Form::text('contact_number',old('contact_number'),['placeholder' => __('messages.contact_number'),'class' =>'form-control contact_number',
+                                //'maxlength' => 20, // Maximum 20 characters allowed
+                                //'pattern' => '^(\+|-)?\d+$', // Accepts '+' and numeric characters only
+                                'required']) }}
                                 <small class="help-block with-errors text-danger" id="contact_number_err"></small>
                             </div>
 
@@ -206,6 +209,8 @@
         var contactNumberInput = document.getElementById('contact_number');
         contactNumberInput.addEventListener('input', function() {
             var regex = /^[0-9 - +]+$/;
+            //var regex = /^[+-]?[0-9]+$/;
+            //var regex = /^[+ -]?[0-9]+$/;
             if (!regex.test(contactNumberInput.value)) {
               
 				$('#contact_number_err').text('Please enter a valid mobile number');

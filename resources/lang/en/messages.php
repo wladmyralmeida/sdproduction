@@ -601,5 +601,8 @@
         'data_not_found' => "Data Not Found",
         'assign_service'=>"Assign Service To Provider",
         'wallet_top_up' => 'Wallet top-up with :value',
+        'joining_date' => 'Joining Date'
+
+
     )
     ?>

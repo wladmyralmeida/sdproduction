@@ -274,7 +274,7 @@
             colors: ['transparent']
           },
           xaxis: {
-            categories: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
+            categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             labels:{
               minHeight: 30,
               maxHeight: 30,

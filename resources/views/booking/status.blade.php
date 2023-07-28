@@ -82,8 +82,10 @@ $extraValue = 0;
                         @foreach($bookingdata->bookingActivity as $activity)
                         <li>
                             <div class="timeline-dots"></div>
-                            <h6 class="float-left mb-1">{{str_replace("_"," ",ucfirst($activity->activity_type))}}</h6>
-                            <small class="float-right mt-1">{{$activity->datetime}}</small>
+                            <div class="d-flex justify-content-between gap-2">
+                            <h6 class="mb-1">{{str_replace("_"," ",ucfirst($activity->activity_type))}}</h6>
+                            <small class="mb-1">{{$activity->datetime}}</small>
+                            </div>
                             <div class="d-inline-block w-100">
                                 <p>{{$activity->activity_message}}</p>
                             </div>

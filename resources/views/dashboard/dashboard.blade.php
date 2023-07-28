@@ -175,7 +175,7 @@
                             <ul class="common-list p-0">
                                 
                                 @foreach($data['dashboard']['upcomming_booking'] as $booking)
-                                    <li class="d-flex flex-wrap gap-2 align-items-center justify-content-between"  style="pointer-events:none;">
+                                    <li class="d-flex flex-wrap gap-2 align-items-start align-items-lg-center justify-content-between flex-column flex-lg-row "  style="pointer-events:none;">
                                         <div class="media align-items-center gap-3">
                                                 <div class="h-avatar is-medium h-5">
                                                     <img class="avatar-50 rounded-circle bg-light" alt="user-icon" src="{{ getSingleMedia($booking->customer,'profile_image', null) }}">

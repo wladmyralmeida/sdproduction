@@ -593,4 +593,5 @@ return [
   'data_not_found' => "Não há dados no momento",
   'assign_service'=>"Atribuir Serviço ao Prestador",
   'wallet_top_up' => 'Recarga de carteira com :value',
+  'joining_date' => 'Data de entrada'
 ];

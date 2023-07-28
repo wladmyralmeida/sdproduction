@@ -147,7 +147,7 @@ class ServiceController extends Controller
        
         if(empty($service)){
             $message = __('messages.record_not_found');
-            return comman_message_response($message,400);   
+            return comman_message_response($message,406);   
         }
 
 

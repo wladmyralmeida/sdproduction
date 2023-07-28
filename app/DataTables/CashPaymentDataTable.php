@@ -63,6 +63,9 @@ class CashPaymentDataTable extends DataTable
                     $q->where('status','like','%'.$keyword.'%');
                 });
             })
+            // ->addColumn('action', function($payment){
+            //     return view('payment.action',compact('payment'))->render();
+            // })
             ->editColumn('action', function($payment) {
                
                 return set_admin_approved_cash($payment->id);

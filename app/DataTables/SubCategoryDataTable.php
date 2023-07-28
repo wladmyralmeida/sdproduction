@@ -71,6 +71,7 @@ class SubCategoryDataTable extends DataTable
         if(auth()->user()->hasAnyRole(['admin'])){
             $model = $model->withTrashed();
         }
+        $model = $model->orderBy('name', 'asc');
         return $model->newQuery();
     }
     /**

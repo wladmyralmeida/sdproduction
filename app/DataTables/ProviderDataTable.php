@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 use App\Traits\DataTableTrait;
-
+use Carbon\Carbon;
 use App\Models\User;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -41,6 +41,15 @@ class ProviderDataTable extends DataTable
             ->editColumn('address', function($provider) {
                 return ($provider->address != null && isset($provider->address)) ? $provider->address : '-';
             })
+            ->editColumn('created_at', function($provider) {
+                $carbonDate = Carbon::parse($provider->created_at);
+
+                // Format the Carbon instance to display only the date part
+                $formattedDate = $carbonDate->toDateString();
+
+                return $formattedDate;
+            })
+               
             ->filterColumn('providertype_id',function($query,$keyword){
                 $query->whereHas('providertype',function ($q) use($keyword){
                     $q->where('name','like','%'.$keyword.'%');
@@ -98,6 +107,10 @@ class ProviderDataTable extends DataTable
             Column::make('display_name')
                 ->title(__('messages.name'))
                 ->addClass('p-name-width'),
+            Column::make('email')
+                ->title(__('messages.email')),
+            Column::make('created_at')
+                ->title(__('messages.joining_date')),
             Column::make('providertype_id')
                 ->title(__('messages.providertype')),
             Column::make('contact_number')

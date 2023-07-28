@@ -58,7 +58,6 @@ class TaxController extends Controller
         }
         $data = $request->all();
        
-       
         $result = Tax::updateOrCreate(['id' => $data['id'] ],$data);
 
 
@@ -66,6 +65,10 @@ class TaxController extends Controller
         if($result->wasRecentlyCreated){
             $message = trans('messages.save_form',['form' => trans('messages.tax')]);
         }
+
+        if($request->is('api/*')) {
+            return comman_message_response($message);
+		}
 
         return redirect(route('tax.index'))->withSuccess($message);        
     }

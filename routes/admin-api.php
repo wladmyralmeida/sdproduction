@@ -90,4 +90,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('servicepackage-save',[  App\Http\Controllers\ServicePackageController::class, 'store' ]);
     Route::get('servicepackage-list',[API\ServicePackageController::class,'getServicePackageList']);
     Route::post('servicepackage-delete/{id}', [ App\Http\Controllers\ServicePackageController::class, 'destroy' ] );
+
+    Route::post('tax-save', [ App\Http\Controllers\TaxController::class, 'store' ] );
+    Route::post('tax-delete/{id}', [ App\Http\Controllers\TaxController::class, 'destroy' ] );
+    Route::get('get-tax-list',[ API\CommanController::class, 'getTaxList' ]);
+
 });

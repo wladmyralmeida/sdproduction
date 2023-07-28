@@ -237,7 +237,6 @@ $menu->handyman->add('<span>'.__('messages.pending_list_form_title',['form' => _
     </defs>
 </svg>')
 ->link->attr(['class' => '']);
-
 $menu->handyman->add('<span>'.__('messages.unassigned_list_form_title',['form' => __('messages.handyman')]).'</span>', ['class' => 'sidebar-layout' ,'route' => ['handyman.pending','unassigned']])
 ->data('permission', 'pending handyman')
 ->prepend('<svg width="15" height="15" class="sidebar-menu-icon" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">

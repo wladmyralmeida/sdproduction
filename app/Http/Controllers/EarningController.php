@@ -67,7 +67,9 @@ class EarningController extends Controller
                 if($row['provider_earning_formate'] > 0){
                     $btn = "<a href=". route('providerpayout.create',$provider_id) ."><i class='fas fa-money-bill-alt earning-icon'></i></a>";
                 }
+                //return view('earning.action',compact('row'))->render();
                 return $btn;
+                //return $earningData;
             })
             ->rawColumns(['action'])
             ->make(true);

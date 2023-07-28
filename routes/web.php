@@ -182,6 +182,7 @@ Route::group(['middleware' => ['auth', 'verified']], function()
     Route::post('tax/{id}', [TaxController::class, 'destroy'])->name('tax.destroy');
     Route::get('earning',[EarningController::class,'index'])->name('earning');
     Route::get('earning-data',[EarningController::class,'setEarningData'])->name('earningData');
+    Route::post('earning/{id}', [EarningController::class, 'destroy'])->name('earning.destroy');
 
     Route::get('handyman-earning',[EarningController::class,'handymanEarning'])->name('handymanEarning');
     Route::get('handyman-earning-data',[EarningController::class,'handymanEarningData'])->name('handymanEarningData');

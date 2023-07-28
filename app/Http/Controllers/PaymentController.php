@@ -102,7 +102,21 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(demoUserPermission()){
+            return  redirect()->back()->withErrors(trans('messages.demo_permission_denied'));
+        }
+        $document = Payment::find($id);
+        $msg= __('messages.msg_fail_to_delete',['name' => __('messages.payment')] );
+        
+        if( $document!='') { 
+        
+            $document->delete();
+            $msg= __('messages.msg_deleted',['name' => __('messages.payment')] );
+        }
+        if(request()->is('api/*')) {
+            return comman_message_response($msg);
+		}
+        return comman_custom_response(['message'=> $msg, 'status' => true]);
     }
 
     public function cashApprove($id){

@@ -17,11 +17,13 @@ use App\Models\HandymanType;
 use App\Models\CouponServiceMapping;
 use App\Models\Coupon;
 use App\Models\Booking;
+use App\Models\Tax;
 use App\Models\AppSetting;
 use App\Http\Resources\API\ServiceResource;
 use App\Http\Resources\API\TypeResource;
 use App\Http\Resources\API\BankResource;
 use App\Http\Resources\API\CouponResource;
+use App\Http\Resources\API\TaxResource;
 use PDF; 
 
 
@@ -48,11 +50,20 @@ class CommanController extends Controller
         return response()->json( $list );
     }
     public function getProviderTax(Request $request){
+       
         $provider_id  = !empty($request->provider_id) ? $request->provider_id : auth()->user()->id;
-        $taxes = ProviderTaxMapping::with('taxes')->where('provider_id',$provider_id);
-        $taxes->whereHas('taxes', function ($a)  {
-            $a->where('status', 1);
-        });
+        $taxes = ProviderTaxMapping::with('taxes');
+        if(auth()->user() !== null){
+            if(auth()->user()->hasRole('admin')){
+                $taxes = $taxes;
+            }
+        }else{
+            $taxes = $taxes->where('provider_id',$provider_id)->whereHas('taxes', function ($a)  {
+                $a->where('status', 1);
+            });
+        }
+      
+       
         $per_page = config('constant.PER_PAGE_LIMIT');
         if( $request->has('per_page') && !empty($request->per_page)){
             if(is_numeric($request->per_page)){
@@ -300,6 +311,38 @@ class CommanController extends Controller
 
         $banks = $banks->paginate($per_page);
         $items = BankResource::collection($banks);
+
+        $response = [
+            'pagination' => [
+                'total_items' => $items->total(),
+                'per_page' => $items->perPage(),
+                'currentPage' => $items->currentPage(),
+                'totalPages' => $items->lastPage(),
+                'from' => $items->firstItem(),
+                'to' => $items->lastItem(),
+                'next_page' => $items->nextPageUrl(),
+                'previous_page' => $items->previousPageUrl(),
+            ],
+            'data' => $items,
+        ];
+        
+        return comman_custom_response($response);
+    }
+    public function getTaxList(Request $request){
+       
+        $taxes = new Tax();
+       
+        $per_page = config('constant.PER_PAGE_LIMIT');
+        if( $request->has('per_page') && !empty($request->per_page)){
+            if(is_numeric($request->per_page)){
+                $per_page = $request->per_page;
+            }
+            if($request->per_page === 'all' ){
+                $per_page = $taxes->count();
+            }
+        }
+        $taxes = $taxes->orderBy('created_at','desc')->paginate($per_page);
+        $items = TaxResource::collection($taxes);
 
         $response = [
             'pagination' => [

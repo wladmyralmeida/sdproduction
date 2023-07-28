@@ -34,13 +34,16 @@ class BankDataTable extends DataTable
                 </div>';
             })
             ->editColumn('provider_id', function ($bank) {
-                return ($bank->provider_id != null && isset($bank->providers)) ? $bank->providers->display_name : '-';
+                $name = ($bank->provider_id != null && isset($bank->providers)) ? $bank->providers->display_name : '-';
+
+                return '<a class="btn-link btn-link-hover" href='.route('provider.show', $bank->providers->id).'>'.$name.'</a>';
+
             })
             ->addColumn('action', function ($bank) {
                 return view('bank.action', compact('bank'))->render();
             })
             ->addIndexColumn()
-            ->rawColumns(['action', 'status', 'is_featured']);
+            ->rawColumns(['action', 'status', 'is_featured','provider_id']);
     }
 
     /**

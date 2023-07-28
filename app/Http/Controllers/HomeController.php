@@ -407,6 +407,18 @@ class HomeController extends Controller
 
                 $items = $items->get();
                 break;
+            case 'service-list':
+                    $items = \App\Models\Service::select('id', 'name as text')->where('status', 1)->where('service_type','service');
+    
+                    if ($value != '') {
+                        $items->where('name', 'LIKE', '%' . $value . '%');
+                    }
+                    if (isset($request->provider_id)) {
+                        $items->where('provider_id', $request->provider_id);
+                    }
+    
+                    $items = $items->get();
+                    break;
             case 'providertype':
                 $items = \App\Models\ProviderType::select('id', 'name as text')
                     ->where('status', 1);

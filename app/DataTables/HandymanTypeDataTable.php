@@ -26,6 +26,12 @@ class HandymanTypeDataTable extends DataTable
             ->editColumn('name', function($handymantype){
                 return '<a class="btn-link btn-link-hover" href='.route('handymantype.create', ['id' => $handymantype->id]).'>'.$handymantype->name.'</a>';
             })
+            ->editColumn('commission', function($payment) {
+                return getPriceFormat($payment->commission);
+            })
+            ->editColumn('type', function($handymantype){
+                return ucfirst($handymantype->type);
+            })
             ->editColumn('status' , function ($handymantype){
                 return '<div class="custom-control custom-switch custom-switch-text custom-switch-color custom-control-inline">
                     <div class="custom-switch-inner">

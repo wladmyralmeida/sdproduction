@@ -167,7 +167,7 @@ class DashboardController extends Controller
         }
         $help_support = Setting::where('type','help_support')->where('key','help_support')->first();
         $refund_policy=Setting::where('type','refund_cancellation_policy')->where('key','refund_cancellation_policy')->first();
-        $upcomming_booking = Booking::where('customer_id',$request->customer_id)->with('customer')->where('status', 'pending')->orderBy('id', 'DESC')->take(5)->get();
+        $upcomming_booking = Booking::where('customer_id',$request->customer_id)->with('customer')->where('status', 'accept')->orderBy('id', 'DESC')->take(5)->get();
         if(!empty($upcomming_booking)){
             $upcomming_booking = BookingResource::collection($upcomming_booking);
         }

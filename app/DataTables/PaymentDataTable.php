@@ -49,7 +49,11 @@ class PaymentDataTable extends DataTable
             ->editColumn('total_amount', function($payment) {
                 return getPriceFormat($payment->total_amount);
             })
-            ->addIndexColumn();
+            ->addColumn('action', function($payment){
+                return view('payment.action',compact('payment'))->render();
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action']);;
     }
 
     /**
@@ -93,7 +97,13 @@ class PaymentDataTable extends DataTable
             Column::make('datetime')
                 ->title(__('messages.date_time')),
             Column::make('total_amount')
-            ->title(__('messages.total_amount')),         
+            ->title(__('messages.total_amount')), 
+            Column::computed('action')
+            ->exportable(false)
+            ->printable(false)
+            ->width(60)
+            ->addClass('text-center')
+            ->title(__('messages.action')),        
         ];
     }
 

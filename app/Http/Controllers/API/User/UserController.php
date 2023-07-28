@@ -138,11 +138,11 @@ class UserController extends Controller
             $handyman_list = User::orderBy('id','desc')->where('user_type',$user_type)->where('status',1);
         }
         if($user_type == 'handyman'){
-            $handyman_list = User::orderBy('id','desc')->where('user_type',$user_type);
+            $handyman_list = User::orderBy('id','desc')->where('user_type',$user_type)->where('status',1);
         }
         if(auth()->user() !== null){
             if(auth()->user()->hasRole('admin')){
-                $handyman_list = User::orderBy('id','desc')->where('user_type',$user_type)->withTrashed();
+                $handyman_list = User::orderBy('id','desc')->where('status',1)->where('user_type',$user_type)->withTrashed();
             }
         }
         

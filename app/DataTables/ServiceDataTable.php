@@ -90,6 +90,7 @@ class ServiceDataTable extends DataTable
             }
         
         }
+        $model = $model->orderBy('name', 'asc');
         return $model->newQuery()->myService();
     }
     /**

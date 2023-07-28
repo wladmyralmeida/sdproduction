@@ -98,6 +98,7 @@
                 <div class="form-group col-sm-6 col-12">
                     <label for="user_type" class="font-weight-bold">User Type<span class="text-danger">*</span></label>
                    <select class="form-control" name="user_type" v-model="user.user_type">
+                   
                     <option value="provider">Provider</option>
                         <option value="handyman">Handyman</option>
                 </select>

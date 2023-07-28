@@ -63,7 +63,7 @@ class CategoryDataTable extends DataTable
         if(auth()->user()->hasAnyRole(['admin'])){
             $model = $model->withTrashed();
         }
-        $model = $model->orderBy('created_at', 'desc');
+        $model = $model->orderBy('name', 'asc');
         return $model->list()->newQuery();
     }
     /**

@@ -2659,7 +2659,7 @@ table.dataTable > thead .sorting_asc:before,
 table.dataTable > thead .sorting_asc_disabled:before,
 table.dataTable > thead .sorting_desc:before,
 table.dataTable > thead .sorting_desc_disabled:before {
-  right: 0.6em;
+  right: 0.3em;
 }
 
 table.dataTable > thead .sorting::after,
@@ -2667,7 +2667,7 @@ table.dataTable > thead .sorting_asc::after,
 table.dataTable > thead .sorting_asc_disabled::after,
 table.dataTable > thead .sorting_desc::after,
 table.dataTable > thead .sorting_desc_disabled::after {
-  right: 1.4em;
+  right: 1.1em;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice{
     padding: 0 6px 0 24px;
@@ -3278,7 +3278,8 @@ table.dataTable > thead .sorting_desc_disabled::after {
 .dark .nav--tabs .nav-link{
     color: #fff;
 }
-.dark .customer-info-detail .customer-info-text{
+.dark .customer-info-detail .customer-info-text,
+.dark .customer-info-detail .customer-info-value{
     color:#EFF0F1;
 }
 .dark .card.bank-info-card{

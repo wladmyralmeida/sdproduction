@@ -462,7 +462,10 @@ class BookingController extends Controller
                     }
                     return  $status;
                 })
-                ->rawColumns(['action','payment_status'])
+                ->editColumn('amount' , function ($row){
+                    return $row['amount'] ? getPriceFormat($row['amount']) : '-';
+                })
+                ->rawColumns(['action','payment_status','amount'])
                 ->make(true);
         }
         if (empty($providerdata)) {
